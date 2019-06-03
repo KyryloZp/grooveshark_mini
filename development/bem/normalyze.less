@@ -1,0 +1,33 @@
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: #67584d;
+    display: flex;
+
+}
+
+.hidden_play {
+    background: transparent;
+    border: none;
+    position: absolute;
+    width: calc(100% - 40px);
+    padding: 0;
+    visibility: hidden;
+    z-index: 1;
+    &:hover {
+        visibility: visible;
+    }
+}
+
+.active {
+    background: #ddd8d3;
+}
+
+.button_mute:hover .mute-bar{
+    visibility: visible;
+
+}
+
+.checked {
+    color: #d07d3c !important;
+}
