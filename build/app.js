@@ -6,6 +6,8 @@ var muteBar = getElem('.mute-bar');
 var progress = getElem('.progress-bar_line');
 var progressTotal = getElem('.progress-bar').offsetWidth;
 var progressBar = getElem('.progress-bar');
+var playerHeader = getElem('.player-header');
+var player = getElem('.player')
 
 
 
@@ -257,4 +259,26 @@ function durationSongs() {
         })
 
     })
+}
+
+
+
+playerHeader.onmousedown = function(e) {
+
+  player.style.position = 'absolute';
+  moveAt(e);
+
+  function moveAt(e) {
+    player.style.left = e.pageX - player.offsetWidth / 2 + 'px';
+    player.style.top = e.pageY - player.offsetHeight / 2 + 'px';
+  }
+
+  document.onmousemove = function(e) {
+    moveAt(e);
+  }
+
+  player.onmouseup = function() {
+    document.onmousemove = null;
+    player.onmouseup = null;
+  }
 }
