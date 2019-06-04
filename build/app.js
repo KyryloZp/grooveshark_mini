@@ -1,4 +1,4 @@
-// global params //
+// -------------- GLOBAL PARAMS -------------- 
 
 var mute = getElem('.mute-bar_line');
 var muteTotal = getElem('.mute-bar').offsetTop;
@@ -9,7 +9,7 @@ var progressBar = getElem('.progress-bar');
 
 
 
-// ajax //
+// ------------- ajax -------------- //
 
 var ajax = new XMLHttpRequest();
 ajax.open('GET', 'libs/music/playlist.json', false);
@@ -18,7 +18,7 @@ ajax.onreadystatechange = function() { // (3)
     if (ajax.readyState != 4) return;
 
     const TEMPLATE = getElem('.playlist_template');
-    const UL =getElem('.player-content_list');
+    const UL = getElem('.player-content_list');
     let ajaxAnswer = JSON.parse(ajax.responseText);
     let ajaxAnswerItem = ajaxAnswer.playlist;
 
@@ -35,7 +35,7 @@ ajax.onreadystatechange = function() { // (3)
 
         UL.appendChild(CLONE_TEMPLATE);
 
-    })
+    });
 
     getElem('.player-content_item').classList.add('active');
     getElem('.active .mini-play-button').style.visibility= 'visible';
@@ -49,6 +49,8 @@ audio();
 durationSongs();
 leftColoumn();
 
+
+//  --------- GLOBAL EVENTS ---------------
 
 getElem('.player').addEventListener('click', onClick);
 
@@ -128,7 +130,6 @@ function playNext(TARGET) {
     pauseMod();
     switch (true) {
         case !(getElem('.button_random').classList.contains('checked')) && !(getElem('.button_circle').classList.contains('checked')):
-        console.log('asd');
         if (nextElem == null) {
             getElem('.active').classList.remove('active');
             document.querySelectorAll('.player-content_item')[0].classList.add('active');
