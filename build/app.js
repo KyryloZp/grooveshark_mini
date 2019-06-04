@@ -262,23 +262,38 @@ function durationSongs() {
 }
 
 
+// ------- Drag and Drop ---------------
 
 playerHeader.onmousedown = function(e) {
+  var coords = getCoords(playerHeader);
+  var shiftX = e.pageX - coords.left;
+  var shiftY = e.pageY - coords.top;
 
   player.style.position = 'absolute';
   moveAt(e);
 
   function moveAt(e) {
-    player.style.left = e.pageX - player.offsetWidth / 2 + 'px';
-    player.style.top = e.pageY - player.offsetHeight / 2 + 'px';
-  }
+    player.style.left = e.pageX - shiftX + 'px';
+    player.style.top = e.pageY - shiftY + 'px';
+}
 
-  document.onmousemove = function(e) {
+document.onmousemove = function(e) {
     moveAt(e);
-  }
+}
 
-  player.onmouseup = function() {
+playerHeader.onmouseup = function() {
     document.onmousemove = null;
-    player.onmouseup = null;
-  }
+    playerHeader.onmouseup = null;
+}
+playerHeader.ondragstart = function() {
+  return false;
+}
+function getCoords(elem) {   // кроме IE8-
+  var box = elem.getBoundingClientRect();
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+}
+
+}
 }
